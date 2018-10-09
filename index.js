@@ -42,6 +42,23 @@ app.get('/api/students/:id', (req, res) => {
     });
 });
 
+app.post('/api/students', (req, res) => {
+    const student = req.body;
+    mysql.connect()
+    .then((connection) => {
+        connection.query('INSERT INTO student SET ?', student)
+        .then(([result]) => {
+            if(result.affectedRows)
+                res.json({
+                    status: true
+                });
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
 
 
 app.listen(process.env.PORT || 3000, () => {
