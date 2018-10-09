@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('./db/mysql2.js');
+const path = require('path');
 const app = express();
 app.use(bodyParser.json());
 
@@ -59,8 +60,12 @@ app.post('/api/students', (req, res) => {
     });
 });
 
+app.use(express.static(path.join(__dirname+'/client/public')));
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/public/index.html'));
+});
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Started listening on port: ', process.env.PORT || 3000);
+app.listen(process.env.PORT || 5000, () => {
+    console.log('Started listening on port: ', process.env.PORT || 5000);
 });
