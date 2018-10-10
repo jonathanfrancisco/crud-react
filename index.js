@@ -43,6 +43,7 @@ app.get('/api/students/:id', (req, res) => {
     });
 });
 
+// adds new student
 app.post('/api/students', (req, res) => {
     const student = req.body;
     mysql.connect()
