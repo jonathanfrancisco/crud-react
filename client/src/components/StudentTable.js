@@ -22,9 +22,9 @@ const columns = [{
   key: 'action',
   render: (text, record) => (
     <span>
-      <a href="javascript:;">Edit</a>
+      <a href=''>Edit</a>
       <Divider type="vertical" />
-      <a href="javascript:;">Delete</a>
+      <a href=''>Delete</a>
     </span>
   ),
 }];
@@ -54,7 +54,7 @@ class StudentTable extends React.Component {
 
     render() {
         return (
-            <Table  columns={columns} dataSource={this.state.data} />
+            <Table  columns={columns} dataSource={this.state.data} rowKey={(record) => record.id}/>
         );
     }
 }
