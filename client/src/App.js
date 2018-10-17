@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+// ANT DESIGN
 import {Row, Col} from 'antd';
+import {Layout} from 'antd';
+
+// MY COMPONENTS
 import StudentTable from './components/StudentTable.js';
+import StudentFormModal from './components/StudentFormModal.js';
+
+// CSS
 import 'antd/dist/antd.css';
+
+const {Header, Content, Footer} = Layout;
+
 
 class App extends Component {
   render() {
     return (
-      <div style={{padding: '20px 50px'}} className="App">
-        <Row gutter={8}>
-          <Col>Nani</Col>
-          <Col span={24}>
-            <StudentTable />
-          </Col>
-        </Row>
-      </div>
+      <Layout>
+        <Header>
+          <h1 style={{color: 'white'}}>React CRUD</h1>
+        </Header>
+        <Content style={{padding: '20px'}}>
+          <Row>
+            <Col span={24}>
+              <StudentFormModal />
+              <StudentTable />
+            </Col>
+          </Row>
+        </Content>
+        <Footer></Footer>
+      </Layout>
     );
   }
 }
