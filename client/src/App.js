@@ -6,7 +6,6 @@ import {Layout} from 'antd';
 
 // MY COMPONENTS
 import StudentTable from './components/StudentTable.js';
-import StudentFormModal from './components/StudentFormModal.js';
 
 // CSS
 import 'antd/dist/antd.css';
@@ -15,6 +14,8 @@ const {Header, Content, Footer} = Layout;
 
 
 class App extends Component {
+
+
   render() {
     return (
       <Layout>
@@ -24,7 +25,6 @@ class App extends Component {
         <Content style={{padding: '20px'}}>
           <Row>
             <Col span={24}>
-              <StudentFormModal />
               <StudentTable />
             </Col>
           </Row>

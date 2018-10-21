@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Divider} from 'antd';
+import StudentFormModal from './StudentFormModal.js';
 
 const columns = [{
   title: 'Firstname',
@@ -29,32 +30,34 @@ const columns = [{
   ),
 }];
 
-class StudentTable extends React.Component {
+class StudentTable extends React.Component { 
 
     state = {
-        data: []
-    }
-    
-    componentDidMount() {
-        this.getStudents();
+      rows: []
     }
 
-    getStudents() {
-        fetch('/api/students')
-        .then((response) => {
-            return response.json();
-        })
-        .then((jsonData) => {
-            console.log(jsonData);
-            this.setState({
-                data: jsonData
-            });
-        });
+    componentDidMount() {
+      this.getStudents();
+    }
+    
+    getStudents = () => {
+      fetch('/api/students')
+      .then((response) => {
+          return response.json();
+      })
+      .then((jsonData) => {
+          this.setState({
+            rows: jsonData
+          });
+      });
     }
 
     render() {
         return (
-            <Table  columns={columns} dataSource={this.state.data} rowKey={(record) => record.id}/>
+            <React.Fragment>
+              <StudentFormModal getStudents={this.getStudents} />
+              <Table columns={columns} dataSource={this.state.rows} rowKey={(record) => record.id} pagination={{pageSize: 2}}/>
+            </React.Fragment>
         );
     }
 }
