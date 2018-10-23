@@ -73,6 +73,7 @@ class StudentFormModal extends React.Component {
   }
 
   handleCreate = (e) => {
+    alert('Create!');
     e.preventDefault();
     const {validateFields} = this.formRef.props.form;
     validateFields((errors, values) => {
@@ -82,7 +83,7 @@ class StudentFormModal extends React.Component {
         this.setState({
           visible: false
         });
-        this.props.getStudents();
+        this.props.fetchStudents();
       }
     });
   }
@@ -98,7 +99,6 @@ class StudentFormModal extends React.Component {
   }
   
   render() {
-
     return (
       <div style={{marginBottom: '15px'}}>
         <Button type="primary" onClick={this.showModal}>

@@ -37,10 +37,10 @@ class StudentTable extends React.Component {
     }
 
     componentDidMount() {
-      this.getStudents();
+      this.fetchStudents();
     }
     
-    getStudents = () => {
+    fetchStudents = () => {
       fetch('/api/students')
       .then((response) => {
           return response.json();
@@ -55,8 +55,8 @@ class StudentTable extends React.Component {
     render() {
         return (
             <React.Fragment>
-              <StudentFormModal getStudents={this.getStudents} />
-              <Table columns={columns} dataSource={this.state.rows} rowKey={(record) => record.id} pagination={{pageSize: 2}}/>
+              <StudentFormModal fetchStudents={this.fetchStudents} />
+              <Table columns={columns} dataSource={this.state.rows} rowKey={(record) => record.id} pagination={{pageSize: 4}}/>
             </React.Fragment>
         );
     }
