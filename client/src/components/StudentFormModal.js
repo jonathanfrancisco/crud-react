@@ -73,7 +73,6 @@ class StudentFormModal extends React.Component {
   }
 
   handleCreate = (e) => {
-    alert('Create!');
     e.preventDefault();
     const {validateFields} = this.formRef.props.form;
     validateFields((errors, values) => {
