@@ -82,7 +82,6 @@ class StudentFormModal extends React.Component {
         this.setState({
           visible: false
         });
-        this.props.fetchStudents();
       }
     });
   }
@@ -94,6 +93,9 @@ class StudentFormModal extends React.Component {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify(formValues)
+    }).then((response) => {
+      // fetch new data on the server after creation
+      this.props.fetchStudents();
     });
   }
   
