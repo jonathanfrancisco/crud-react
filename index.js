@@ -51,9 +51,7 @@ app.post('/api/students', (req, res) => {
         connection.query('INSERT INTO student SET ?', student)
         .then(([result]) => {
             if(result.affectedRows)
-                res.json({
-                    status: true
-                });
+                res.send().status(200);
         });
     })
     .catch((err) => {

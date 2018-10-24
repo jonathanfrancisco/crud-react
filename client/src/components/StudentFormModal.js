@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Form, Input, InputNumber, Select} from 'antd';
+import { Modal, Button, Form, Input, InputNumber, Select, message} from 'antd';
 const {Option} = Select;
 
 const StudentForm = Form.create()(class extends React.Component {
@@ -95,7 +95,12 @@ class StudentFormModal extends React.Component {
       body: JSON.stringify(formValues)
     }).then((response) => {
       // fetch new data on the server after creation
-      this.props.fetchStudents();
+      if(response.status === 200) {
+        message.success('New student succesfully added.');
+        this.props.fetchStudents();
+      }
+      else
+        message.error('Something went wrong. Please, try again.');
     });
   }
   
