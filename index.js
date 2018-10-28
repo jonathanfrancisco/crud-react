@@ -59,6 +59,27 @@ app.post('/api/students', (req, res) => {
     });
 });
 
+// delete student by id
+
+app.delete('/api/students', (req, res) => {
+    mysql.connect()
+    .then((connection) => {
+        connection.query('DELETE FROM student WHERE id = ?',[req.body.studentId])
+        .then(([result]) => {
+            if(result.affectedRows)
+                res.send().status(200);
+            else
+                res.send().status(500);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+});
+
 app.use(express.static(path.join(__dirname+'/client/build')));
 
 app.get('*', (req, res) => {
