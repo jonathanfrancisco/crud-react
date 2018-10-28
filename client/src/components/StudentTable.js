@@ -52,6 +52,9 @@ class StudentTable extends React.Component {
           this.setState({
             rows: jsonData
           });
+      })
+      .catch((err) => {
+        console.log(err);
       });
     }
 

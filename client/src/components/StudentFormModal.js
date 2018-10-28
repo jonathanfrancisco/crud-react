@@ -101,6 +101,8 @@ class StudentFormModal extends React.Component {
       }
       else
         message.error('Something went wrong. Please, try again.');
+    }).catch((err) => {
+      console.log(err);
     });
   }
   

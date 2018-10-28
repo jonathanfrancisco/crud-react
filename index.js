@@ -36,6 +36,9 @@ app.get('/api/students/:id', (req, res) => {
         .then((results) => {
             const [rows, fields] = results;
             res.json(rows[0]);
+        })
+        .catch((err) => {
+            console.log(err);
         });
     })
     .catch((err) => {
