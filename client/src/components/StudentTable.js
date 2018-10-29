@@ -58,6 +58,26 @@ class StudentTable extends React.Component {
       });
     }
 
+    createStudent = (formValues) => {
+      fetch('/api/students', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(formValues)
+      }).then((response) => {
+        // fetch new data on the server after creation
+        if(response.status === 200) {
+          message.success('New student succesfully added.');
+          this.fetchStudents();
+        }
+        else
+          message.error('Something went wrong. Please, try again.');
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+
     deleteStudent(studentId) {
       fetch('/api/students', {
         method: 'DELETE',
@@ -82,7 +102,7 @@ class StudentTable extends React.Component {
     render() {
         return (
             <React.Fragment>
-              <StudentFormModal fetchStudents={this.fetchStudents} />
+              <StudentFormModal createStudent={this.createStudent} />
               <Table columns={this.columns} dataSource={this.state.rows} rowKey={(record) => record.id} pagination={{pageSize: 4}}/>
             </React.Fragment>
         );

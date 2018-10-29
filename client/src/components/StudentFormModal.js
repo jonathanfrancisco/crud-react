@@ -77,7 +77,7 @@ class StudentFormModal extends React.Component {
     const {validateFields} = this.formRef.props.form;
     validateFields((errors, values) => {
       if(!errors) {
-        this.createStudent(values);
+        this.props.createStudent(values); // create student
         this.formRef.props.form.resetFields();
         this.setState({
           visible: false
@@ -86,26 +86,6 @@ class StudentFormModal extends React.Component {
     });
   }
 
-  createStudent = (formValues) => {
-    fetch('/api/students', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(formValues)
-    }).then((response) => {
-      // fetch new data on the server after creation
-      if(response.status === 200) {
-        message.success('New student succesfully added.');
-        this.props.fetchStudents();
-      }
-      else
-        message.error('Something went wrong. Please, try again.');
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-  
   render() {
     return (
       <div style={{marginBottom: '15px'}}>
